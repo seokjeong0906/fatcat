@@ -27,7 +27,7 @@ if st.session_state.selected_category is None:
         st.session_state.selected_category = categories[category_label]
         st.session_state.current_index = 0
         st.session_state.show_result = False
-        st.experimental_rerun()
+        st.rerun()
 else:
     category = st.session_state.selected_category
     data_path = f"data/{category}.json"
@@ -43,7 +43,7 @@ else:
             st.success("🎉 모든 문제를 풀었습니다!")
             if st.button("처음으로"):
                 st.session_state.selected_category = None
-                st.experimental_rerun()
+                st.rerun()
         else:
             current_question = questions[st.session_state.current_index]
             image_url = f"https://raw.githubusercontent.com/seokjeong0906/fatcat/main/images/{category}/{current_question['image']}"
@@ -54,7 +54,7 @@ else:
                 if st.button("제출"):
                     st.session_state.show_result = True
                     st.session_state.user_answer = answer
-                    st.experimental_rerun()
+                    st.rerun()
             else:
                 user = st.session_state.user_answer.strip().lower()
                 correct = current_question["answer"].strip().lower()
@@ -69,4 +69,4 @@ else:
                 if st.button("➡ 다음 문제"):
                     st.session_state.current_index += 1
                     st.session_state.show_result = False
-                    st.experimental_rerun()
+                    st.rerun()
